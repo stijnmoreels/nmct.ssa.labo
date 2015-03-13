@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nmct.ssa.labo.webshop", "nmct.ssa.labo.webshop\nmct.ssa.labo.webshop.csproj", "{D574CBB3-5E6E-46B6-8A3F-BA0A0AE862B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nmct.ssa.labo.webshop.test", "nmct.ssa.labo.webshop.test\nmct.ssa.labo.webshop.test.csproj", "{D35590A8-9383-49E8-B38E-E953958FAC32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nmct.ssa.labo.webshop.models", "nmct.ssa.labo.webshop.models\nmct.ssa.labo.webshop.models.csproj", "{DF816F4B-4ABE-43AD-800C-841E3B5D5451}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nmct.ssa.labo.webshop.businesslayer", "nmct.ssa.labo.webshop.businesslayer\nmct.ssa.labo.webshop.businesslayer.csproj", "{2D81F5B0-0095-4A60-BCCF-48E837A13655}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nmct.ssa.labo.webshop.orderwebjob", "nmct.ssa.labo.webshop.orderwebjob\nmct.ssa.labo.webshop.orderwebjob.csproj", "{DC60EA9C-0991-4DFB-9C46-9C068EE19B99}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://moreelsstijn.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = nmct.ssa.labo.webshop\\nmct.ssa.labo.webshop.csproj
+		SccProjectName1 = nmct.ssa.labo.webshop
+		SccLocalPath1 = nmct.ssa.labo.webshop
+		SccProjectUniqueName2 = nmct.ssa.labo.webshop.test\\nmct.ssa.labo.webshop.test.csproj
+		SccProjectName2 = nmct.ssa.labo.webshop.test
+		SccLocalPath2 = nmct.ssa.labo.webshop.test
+		SccProjectUniqueName3 = nmct.ssa.labo.webshop.models\\nmct.ssa.labo.webshop.models.csproj
+		SccProjectName3 = nmct.ssa.labo.webshop.models
+		SccLocalPath3 = nmct.ssa.labo.webshop.models
+		SccProjectUniqueName4 = nmct.ssa.labo.webshop.businesslayer\\nmct.ssa.labo.webshop.businesslayer.csproj
+		SccProjectName4 = nmct.ssa.labo.webshop.businesslayer
+		SccLocalPath4 = nmct.ssa.labo.webshop.businesslayer
+		SccProjectUniqueName5 = nmct.ssa.labo.webshop.orderwebjob\\nmct.ssa.labo.webshop.orderwebjob.csproj
+		SccProjectName5 = nmct.ssa.labo.webshop.orderwebjob
+		SccLocalPath5 = nmct.ssa.labo.webshop.orderwebjob
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D574CBB3-5E6E-46B6-8A3F-BA0A0AE862B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D574CBB3-5E6E-46B6-8A3F-BA0A0AE862B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D574CBB3-5E6E-46B6-8A3F-BA0A0AE862B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D574CBB3-5E6E-46B6-8A3F-BA0A0AE862B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D35590A8-9383-49E8-B38E-E953958FAC32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D35590A8-9383-49E8-B38E-E953958FAC32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D35590A8-9383-49E8-B38E-E953958FAC32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D35590A8-9383-49E8-B38E-E953958FAC32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF816F4B-4ABE-43AD-800C-841E3B5D5451}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF816F4B-4ABE-43AD-800C-841E3B5D5451}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF816F4B-4ABE-43AD-800C-841E3B5D5451}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF816F4B-4ABE-43AD-800C-841E3B5D5451}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D81F5B0-0095-4A60-BCCF-48E837A13655}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D81F5B0-0095-4A60-BCCF-48E837A13655}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D81F5B0-0095-4A60-BCCF-48E837A13655}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D81F5B0-0095-4A60-BCCF-48E837A13655}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC60EA9C-0991-4DFB-9C46-9C068EE19B99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC60EA9C-0991-4DFB-9C46-9C068EE19B99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC60EA9C-0991-4DFB-9C46-9C068EE19B99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC60EA9C-0991-4DFB-9C46-9C068EE19B99}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

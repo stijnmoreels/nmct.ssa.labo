@@ -1,0 +1,20 @@
+﻿@model nmct.ssa.labo.webshop.ViewModels.UploadVM
+@{
+    ViewBag.Title = "Upload";
+}
+
+<h2>Upload</h2>
+@using (Html.BeginForm("Upload", "Catalog", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="span4">
+        <div class="card">
+            <h2 class="card-heading simple">Upload Image for <b>@Model.Device.Name</b></h2>
+            <div class="card-body">
+                <input type="file" name="Image" value="@Model.Device.Image"  class="form-control"/>
+                <input type="submit" name="btnUpload" value="Upload"/>
+            </div>
+        </div>
+    </div>
+    @Html.Hidden("Id", Model.Id);
+}
+

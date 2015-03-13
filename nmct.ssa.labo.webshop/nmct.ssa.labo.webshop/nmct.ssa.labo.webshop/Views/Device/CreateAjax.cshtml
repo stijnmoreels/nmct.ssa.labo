@@ -1,0 +1,128 @@
+﻿@model nmct.ssa.labo.webshop.ViewModels.CreateDeviceVM
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm("Create", "Device", FormMethod.Post)) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Device</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Device.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Device.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Device.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Device.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Device.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Device.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Device.BuyPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Device.BuyPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Device.BuyPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Device.RentPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Device.RentPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Device.RentPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Device.Stock, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Device.Stock, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Device.Stock, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Operating Systems
+            <div class="col-md-10">
+                @Html.DropDownList("operatingsystems", Model.Os, new { @class = "form-control", @id = "OS" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.ListBox("SelectedOs", Model.SelectedOs, new { @class = "form-control", @id = "SELOS", @Multiple = "multiple" })
+            </div>
+        </div>
+
+        <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" id="btnAddOS" class="btn btn-default" value="Add" />
+        </div>
+    </div>
+
+    @*<div class="form-group">
+        Frameworks
+        <div class="col-md-10">
+            @Html.DropDownList("frameworks", Model.FrameWorks, new { @class = "form-control", @id = "FRAME" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.ListBox("SelectedFrameWork", Model.SelectedFrameWorks,     new { @class = "form-control", @id = "SELFRAME", Multiple="multiple" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" id="btnAddFrame" class="btn btn-default" value="Add" />
+        </div>
+    </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(function () {
+            $("#btnAddOS").click(function () {
+                var list = $("#SELOS");
+                var item = "<option value=" + $('#OS').val() + " >" + $('#OS :selected').text() + "</option>";
+                list.append(item);
+            });
+            $("#btnAddFrame").click(function () {
+                var list = $("#SELFRAME");
+                var item = "<option value=" + $('#FRAME').val() + " >" + $('#FRAME :selected').text() + "</option>";
+                list.append(item);
+            });
+            $("form").submit(function (e) {
+                $("#SELOS option").attr("selected", "selected");
+                $("#SELFRAME option").attr("selected", "selected");
+            });
+        });
+    </script>
+}

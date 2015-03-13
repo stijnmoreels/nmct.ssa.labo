@@ -1,0 +1,81 @@
+﻿@model nmct.ssa.labo.webshop.ViewModels.BasketVM
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="span12">
+    <div class="card">
+        <h2 class="card-heading simple">Basket</h2>
+        <table class="table">
+            <tr>
+                <th>
+                    Product
+                </th>
+                <th>
+                    Unit Price
+                </th>
+                <th>
+                    Amount
+                </th>
+                <th>
+                    Price
+                </th>
+                <th></th>
+            </tr>
+            @using(Html.BeginForm("Index", "Basket", FormMethod.Post))
+            {
+
+                //foreach (var item in Model.Baskets)
+                for (var i = 0; i < Model.Baskets.Count; i++ )
+                {
+                    @*@Html.Hidden("Baskets[].DeviceId", Model.Baskets[i].DeviceId)*@
+                    @Html.HiddenFor(modelItem => modelItem.Baskets[i].DeviceId)
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => modelItem.Baskets[i].Device.Name)
+                        </td>
+                        <td>
+                            &euro; @Html.DisplayFor(modelItem => modelItem.Baskets[i].Device.BuyPrice)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(modelItem => modelItem.Baskets[i].Amount)
+                        </td>
+                        <td>
+                            &euro; @Html.DisplayFor(modelItem => modelItem.Baskets[i].TotalPrice)
+                        </td>
+                    </tr>
+                }
+                <input type="submit" value="Update" class="btn btn-primary btn-large"/>
+
+            }
+            <tr>
+                <td></td>
+                <td></td>
+                <td style="text-align:right;font-weight:bold;">Total Price: </td>
+                <td>&euro; @Model.TotalPrice</td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+               <td></td>
+                <td style="width:100px;">
+                    @using (Html.BeginForm("Create", "Order", FormMethod.Get))
+                    {
+                        <input type="submit" name="btnOrder" value="Order Basket" class="btn btn-primary btn-large" />
+                    }
+                </td>
+            </tr>
+
+        </table>
+    </div class="card">
+</div class="span12">
+
+
