@@ -6,7 +6,7 @@ The webshop is hosted on "webshop.azurewebsites.net", it's an project for the Mo
 
 In this repository you find the whole businesslayer from the project. This includes: "Controllers", "Repositories", "Services" & "Caching". Below you find a example of a flow:
 
-Controller* > Service* > Repository* > Context* > Model*
+**Controller > Service > Repository > Context > Model**
 
 BasketController > BasketService > BasketRepository > ApplicationDbContext > Basket
 
