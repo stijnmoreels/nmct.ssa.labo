@@ -14,6 +14,8 @@ using nmct.ssa.labo.webshop.businesslayer.Caching;
 using nmct.ssa.labo.webshop.businesslayer.Services.Interfaces;
 using nmct.ssa.labo.webshop.businesslayer.Repositories.Interfaces;
 using nmct.ssa.labo.webshop.businesslayer.Caching.Interfaces;
+using System.Globalization;
+using System.Diagnostics;
 
 namespace nmct.ssa.labo.webshop.businesslayer.Services
 {
@@ -23,6 +25,7 @@ namespace nmct.ssa.labo.webshop.businesslayer.Services
         private IGenericRepository<FrameWork> genericFramework = null;
         private IDeviceRepository deviceRepository = null;
         private IWebshopCache cache = null;
+        private CultureInfo culture = CultureInfo.CurrentCulture;
 
         public CatalogService(IDeviceRepository deviceRepository, IGenericRepository<OS> genericOS,  
             IGenericRepository<FrameWork> genericFramework, IWebshopCache cache)
@@ -35,9 +38,17 @@ namespace nmct.ssa.labo.webshop.businesslayer.Services
 
         public List<Device> GetDevices()
         {
-            if (cache.CacheCheck(CacheNames.CACHE_DEVICES))
+            /*if (cache.CacheCheck(CacheNames.CACHE_DEVICES))
                 cache.RefreshCache<Device>(deviceRepository.All() ,CacheNames.CACHE_DEVICES);
-            return cache.GetItemsFromCache<Device>(CacheNames.CACHE_DEVICES).ToList<Device>();
+            return cache.GetItemsFromCache<Device>(CacheNames.CACHE_DEVICES).ToList<Device>();*/
+            
+            
+            return deviceRepository.All().ToList<Device>();
+        }
+
+        public List<TranslatedDevice> GetTranslatedDevices(string name)
+        {
+            return deviceRepository.AllTranslatedDevices(name);
         }
 
         public Device GetDeviceById(int id)
@@ -47,12 +58,23 @@ namespace nmct.ssa.labo.webshop.businesslayer.Services
 
         public List<OS> GetOs()
         {
-            return cache.GetItemsFromCache<OS>(CacheNames.CACHE_OS).ToList<OS>();
+            if (cache.CacheCheck(CacheNames.CACHE_OS))
+                cache.RefreshCache<OS>(genericOS.All().ToList<OS>(), CacheNames.CACHE_OS);
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            List<OS> os = cache.GetItemsFromCache<OS>(CacheNames.CACHE_OS).ToList<OS>();
+            //List<OS> os = cache.TestGetOs(CacheNames.CACHE_OS).ToList<OS>();
+            //List<OS> os = genericOS.All().ToList<OS>();
+
+            stopwatch.Stop();
+            return os;
         }
 
         public List<FrameWork> GetFrameworks()
         {
-            return cache.GetItemsFromCache<FrameWork>(CacheNames.CACHE_FRAMEWORK).ToList<FrameWork>();
+            //return cache.GetItemsFromCache<FrameWork>(CacheNames.CACHE_FRAMEWORK).ToList<FrameWork>();
+            return genericFramework.All().ToList<FrameWork>();
         }
 
         public OS GetOsById(int id)
@@ -74,7 +96,7 @@ namespace nmct.ssa.labo.webshop.businesslayer.Services
         public void RefreshDevices()
         {
             List<Device> devices = deviceRepository.All().ToList<Device>();
-            cache.RefreshCache<Device>(devices, CacheNames.CACHE_DEVICES);
+            //cache.RefreshCache<Device>(devices, CacheNames.CACHE_DEVICES);
         }
 
         //private void RefreshCache()

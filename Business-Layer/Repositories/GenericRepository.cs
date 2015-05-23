@@ -8,7 +8,9 @@ using System.Web;
 
 namespace nmct.ssa.labo.webshop.businesslayer.Repositories
 {
-    public class GenericRepository<T, C> : IGenericRepository<T> where T : class where C : DbContext, new()
+    public class GenericRepository<T, C> : IGenericRepository<T>
+        where T : class
+        where C : DbContext, new()
     {
 
         //internal ApplicationDbContext context;
@@ -53,9 +55,7 @@ namespace nmct.ssa.labo.webshop.businesslayer.Repositories
         public virtual void Delete(T entityToDelete)
         {
             if (context.Entry(entityToDelete).State == EntityState.Detached)
-            {
                 dbSet.Attach(entityToDelete);
-            }
             dbSet.Remove(entityToDelete);
         }
 

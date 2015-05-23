@@ -18,10 +18,10 @@ namespace nmct.ssa.labo.webshop.businesslayer.Services
         private IWebshopCache cache = null;
 
         public BasketService(IBasketRepository repBasket, IWebshopCache cache)
-	    {
+        {
             this.basketRepository = repBasket;
             this.cache = cache;
-	    
+        }
 
         public List<BasketItem> GetAllBasketItems(string user)
         {
@@ -30,21 +30,22 @@ namespace nmct.ssa.labo.webshop.businesslayer.Services
 
         public int CountAllBasketItems(string user)
         {
-            return cache.GetItemFromCache<int>(CacheNames.CACHE_BASKET);
+            return basketRepository.GetAllBasketItems(user).Count;
+            //return cache.GetItemFromCache<int>(CacheNames.CACHE_BASKET);
         }
 
         public void AddToBasket(Device device, int amount, string user)
         {
             basketRepository.AddToBasket(device, amount, user);
             //cache.IncrementCache<BasketItem>(CacheNames.CACHE_BASKET, basket.Count);
-            RefreshItemsInBasket(user);
+            //RefreshItemsInBasket(user);
         }
 
         public void UpdateBasket(List<BasketItem> basket, string user)
         {
             this.basketRepository.UpdateBasket(basket, user);
             //cache.IncrementCache<BasketItem>(CacheNames.CACHE_BASKET, basket.Count);
-            RefreshItemsInBasket(user);
+            //RefreshItemsInBasket(user);
         }
 
         public void UnavailableBasket(List<BasketItem> baskets)
@@ -64,15 +65,16 @@ namespace nmct.ssa.labo.webshop.businesslayer.Services
 
         public int GetItemsInBasket(string user)
         {
-            if (cache.CacheCheck(CacheNames.CACHE_BASKET))
+            /*if (cache.CacheCheck(CacheNames.CACHE_BASKET))
                 RefreshItemsInBasket(user);
-            return cache.GetItemFromCache<int>(CacheNames.CACHE_BASKET);
+            return cache.GetItemFromCache<int>(CacheNames.CACHE_BASKET);*/
+            return basketRepository.GetAllBasketItems(user).Count;
         }
 
         public void RefreshItemsInBasket(string user)
         {
             List<BasketItem> basket = basketRepository.GetAllBasketItems(user);
-            cache.RefreshCache<int>(basket.Count, CacheNames.CACHE_BASKET);
+            //cache.RefreshCache<int>(basket.Count, CacheNames.CACHE_BASKET);
         }
     }
 }

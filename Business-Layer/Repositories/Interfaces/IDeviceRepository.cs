@@ -13,5 +13,6 @@ namespace nmct.ssa.labo.webshop.businesslayer.Repositories.Interfaces
         void UpdatePicture(Device device);
         List<Device> GetFavoriteDevices();
         void UpdateFavorite(int id, bool favorite);
+        List<TranslatedDevice> AllTranslatedDevices(string name);
     }
 }

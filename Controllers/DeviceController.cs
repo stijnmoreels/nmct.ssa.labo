@@ -16,7 +16,7 @@ namespace nmct.ssa.labo.webshop.Controllers
 {
     public class DeviceController : Controller, IControllerService
     {
-        private static CreateDeviceVM _vm = new CreateDeviceVM();
+        private CreateDeviceVM _vm = new CreateDeviceVM();
         public ICatalogService CatalogService { get; set; }
 
         public DeviceController(ICatalogService service)

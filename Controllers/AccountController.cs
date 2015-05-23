@@ -169,8 +169,8 @@ namespace nmct.ssa.labo.webshop.Controllers
                     //REGISTER OK
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     //UPDATDE BASKET ID
-                    if(Request.Cookies[CookieAuth.COOKIE_NAME] != null)
-                        basketService.UpdateBasketID(user.UserName, Request.Cookies[CookieAuth.COOKIE_NAME].Value);
+                    if(Request.Cookies[CookieAuth.COOKIE_AUTH] != null)
+                        basketService.UpdateBasketID(user.UserName, Request.Cookies[CookieAuth.COOKIE_AUTH].Value);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link

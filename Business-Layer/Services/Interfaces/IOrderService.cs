@@ -17,5 +17,6 @@ namespace nmct.ssa.labo.webshop.businesslayer.Services.Interfaces
         List<OrderLine> GetOrderLinesFromOrder(int id);
         Courier GetCourier(int id);
         List<OrderChart> GetAllJoinedOrders(int mode);
+        Order GetOrderById(int id);
     }
 }

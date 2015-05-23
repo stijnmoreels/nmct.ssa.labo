@@ -17,6 +17,7 @@ namespace nmct.ssa.labo.webshop.businesslayer.Repositories
         public List<Order> GetOrdersByUser(string user)
         {
             return context.Order
+                .Include(lines => lines.Orders)
                 .Where(o => o.UserId.Equals(user) && o.Deleted == false)
                 .OrderByDescending(o => o.Timestamp).ToList<Order>();
         }

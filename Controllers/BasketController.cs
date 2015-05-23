@@ -33,7 +33,8 @@ namespace nmct.ssa.labo.webshop.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            this.CookieController = this.CookieController ?? new CookieController(BasketService, User, Request, Response);
+            this.CookieController = this.CookieController ?? 
+                new CookieController(BasketService, User, Request, Response);
             BasketVM vm = new BasketVM();
             List<BasketItem> items = CookieController.GetItems();
             vm.Baskets = items;
@@ -69,13 +70,16 @@ namespace nmct.ssa.labo.webshop.Controllers
         public int ItemsBasket()
         {
             string user = UserOrAnonymous();
-            return user != null ? BasketService.GetItemsInBasket(user) : 0;
+            return user != null ? 
+                BasketService.GetItemsInBasket(user) : 0;
         }
 
         public string UserOrAnonymous()
         {
-            bool auth = User.Identity.IsAuthenticated, cookie = Request.Cookies[CookieAuth.COOKIE_NAME] != null;
-            return auth ? User.Identity.Name : cookie ? Request.Cookies[CookieAuth.COOKIE_NAME].Value : null;
+            bool auth = User.Identity.IsAuthenticated, cookie = 
+                Request.Cookies[CookieAuth.COOKIE_AUTH] != null;
+            return auth ? User.Identity.Name : cookie ? 
+                Request.Cookies[CookieAuth.COOKIE_AUTH].Value : null;
         }
     }
 }

@@ -8,11 +8,29 @@ using nmct.ssa.labo.webshop.businesslayer.Context;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using nmct.ssa.labo.webshop.businesslayer.Repositories.Interfaces;
+using System.Globalization;
+using System.Data.Entity.Migrations;
 
 namespace nmct.ssa.labo.webshop.businesslayer.Repositories
 {
     public class DeviceRepository : GenericRepository<Device, ApplicationDbContext>, IDeviceRepository
     {
+        private CultureInfo culture = CultureInfo.CurrentCulture;
+
+        public override IEnumerable<Device> All()
+        {
+            return base.All();
+        }
+
+        public List<TranslatedDevice> AllTranslatedDevices(string name)
+        {
+            string filter = !name.Equals(string.Empty) ? name : culture.Name;
+            return context.TranslatedDevice
+                .Include("Device")
+                .Where(t => t.Culture.Name.Equals(filter))
+                .ToList<TranslatedDevice>();
+        }
+
         public void InsertDevice(Device device)
         {
             foreach (OS os in device.OS)

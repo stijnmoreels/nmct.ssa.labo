@@ -24,5 +24,6 @@ namespace nmct.ssa.labo.webshop.businesslayer.Services.Interfaces
 
         List<Device> GetFavoriteDevices();
         void RefreshDevices();
+        List<TranslatedDevice> GetTranslatedDevices(string name);
     }
 }

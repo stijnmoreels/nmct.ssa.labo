@@ -14,12 +14,11 @@ namespace nmct.ssa.labo.webshop.models
         [Required]
         public string Name { get; set; }
         [Required]
-        public string Description { get; set; }
-        [Required]
         [Range(1, Double.MaxValue)]
         public double BuyPrice { get; set; }
         [Required]
         [Range(1, Double.MaxValue)]
+        [Display(Name="txtRentPrice", ResourceType=typeof(Properties.Device.Device))]
         public double RentPrice { get; set; }
         [Required]
         [Range(1, Int64.MaxValue)]
@@ -28,6 +27,8 @@ namespace nmct.ssa.labo.webshop.models
         public List<OS> OS { get; set; }
         public List<FrameWork> FrameWorks { get; set; }
         public bool Favourite { get; set; }
+        [ForeignKey("Device, Culture")]
+        public ICollection<TranslatedDevice> TranslatedDevices { get; set; }
 
         public Device()
         {

@@ -86,5 +86,10 @@ namespace nmct.ssa.labo.webshop.businesslayer.Services
         {
             return orderRepository.GetAllJoinedOrders(mode);
         }
+
+        public Order GetOrderById(int id)
+        {
+            return orderRepository.GetItemByID(id);
+        }
     }
 }

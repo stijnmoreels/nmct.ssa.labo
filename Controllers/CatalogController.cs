@@ -14,6 +14,7 @@ using nmct.ssa.labo.webshop.Constants;
 using nmct.ssa.labo.webshop.Cookies;
 using System.Text;
 using nmct.ssa.labo.webshop.businesslayer.Services.Interfaces;
+using System.Globalization;
 
 namespace nmct.ssa.labo.webshop.Controllers
 {
@@ -40,9 +41,10 @@ namespace nmct.ssa.labo.webshop.Controllers
             this.CookieController = this.CookieController ?? new CookieController(BasketService, User, Request, Response);
             BasketService.RefreshItemsInBasket(UserOrAnonymous());
             CatalogService.RefreshDevices();
-            if (!User.Identity.IsAuthenticated && Request.Cookies[CookieAuth.COOKIE_NAME] == null)
+            if (!User.Identity.IsAuthenticated && Request.Cookies[CookieAuth.COOKIE_AUTH] == null)
                 CookieController.MakeCookie(DateTime.Now.ToString() + new Random().Next(0, 2000));
-            return View(CatalogService.GetDevices());
+            //return View(CatalogService.GetDevices());
+            return View(CatalogService.GetTranslatedDevices(CultureInfo.CurrentUICulture.Name));
         }
 
         [HttpGet]
@@ -76,8 +78,10 @@ namespace nmct.ssa.labo.webshop.Controllers
 
         public string UserOrAnonymous()
         {
-            bool auth = User.Identity.IsAuthenticated, cookie = Request.Cookies[CookieAuth.COOKIE_NAME] != null;
-            return auth ? User.Identity.Name : cookie ? Request.Cookies[CookieAuth.COOKIE_NAME].Value : null;
+            bool auth = User.Identity.IsAuthenticated, cookie = 
+                Request.Cookies[CookieAuth.COOKIE_AUTH] != null;
+            return auth ? User.Identity.Name : cookie ? 
+                Request.Cookies[CookieAuth.COOKIE_AUTH].Value : null;
         }
     }
 }

@@ -61,10 +61,10 @@ namespace nmct.ssa.labo.webshop.Controllers
             List<OrderLine> orders = new List<OrderLine>();
             items.ForEach(i => orders.Add(new OrderLine() { Amount = i.Amount, Device = i.Device, TotalPrice = i.TotalPrice }));
             BasketService.UnavailableBasket(items);
-            
+
             vm.Order.CourierId = vm.CourierId;
             vm.Order.Orders = orders;
-            vm.Order.TotalPrice = orders.Sum(o => o.TotalPrice) 
+            vm.Order.TotalPrice = orders.Sum(o => o.TotalPrice)
                 + OrderService.GetCourier(vm.CourierId).Price;
             OrderService.AddToQueue(vm.Order);
             OrderService.SendMail(vm.Order);
@@ -83,7 +83,7 @@ namespace nmct.ssa.labo.webshop.Controllers
             BasketService.RefreshItemsInBasket(UserOrAnonymous());
             ApplicationUser user = UserService.GetAllUserValues(User.Identity.Name);
             List<Order> orders = OrderService.GetOrdersFromUser(user.Id);
-            foreach(Order order in orders)
+            foreach (Order order in orders)
             {
                 List<OrderLine> items = OrderService.GetOrderLinesFromOrder(order.Id);
                 order.Orders = items;
@@ -94,8 +94,10 @@ namespace nmct.ssa.labo.webshop.Controllers
 
         public string UserOrAnonymous()
         {
-            bool auth = User.Identity.IsAuthenticated, cookie = Request.Cookies[CookieAuth.COOKIE_NAME] != null;
-            return auth ? User.Identity.Name : cookie ? Request.Cookies[CookieAuth.COOKIE_NAME].Value : null;
+            bool auth = User.Identity.IsAuthenticated, 
+                cookie = Request.Cookies[CookieAuth.COOKIE_AUTH] != null;
+            return auth ? User.Identity.Name : cookie ? 
+                Request.Cookies[CookieAuth.COOKIE_AUTH].Value : null;
         }
     }
 }

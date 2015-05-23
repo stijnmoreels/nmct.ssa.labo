@@ -54,5 +54,10 @@ namespace nmct.ssa.labo.webshop.businesslayer.Caching
         {
             cache.StringIncrement(name, number, CommandFlags.None);
         }
+
+        public IEnumerable<OS> TestGetOs(string name)
+        {
+            return (IEnumerable<OS>)cache.Get(name);
+        }
     }
 }

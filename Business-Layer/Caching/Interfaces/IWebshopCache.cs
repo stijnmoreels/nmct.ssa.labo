@@ -14,5 +14,6 @@ namespace nmct.ssa.labo.webshop.businesslayer.Caching.Interfaces
         void RefreshCache<T>(T value, string name);
         void RefreshCache<T>(IEnumerable<T> values, string name);
         void IncrementCache<T>(string name, int number);
+        IEnumerable<OS> TestGetOs(string name);
     }
 }
